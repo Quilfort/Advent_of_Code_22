@@ -118,17 +118,49 @@ static bool check_pairs(char *string1, char *string2, char *string3, char *strin
 	printf("%d - ", secondl);
 	printf("%d | ", secondr);
 
-	if (firstl >= secondl)
+	int diff1;
+	int diff2;
+
+	diff1 = firstl - firstr;
+	diff2 = secondl - secondr;
+
+
+	// 3 - 5  3 - 6
+	//  2  en 3
+	// 3 < 6
+	// 3 >= 3
+	// 3 + 2 < 6
+
+	if (diff1 < diff2)
 	{
-		if (firstr < secondr)
-			return (false);
+		if (firstl < secondr)
+		{
+			if (firstl >= secondl)
+			{
+				if ((secondl + diff1) < secondr)
+					return (true);
+			}
+		}
 	}
-	else if (secondl >= firstl)
+	else if (diff2 < diff1)
 	{
-		if (secondr < firstr)
-			return (false);
+		if (secondl < firstr)
+		{
+			if (secondl >= firstl)
+			{
+				if ((firstl + diff1) < firstr)
+					return (true);
+			}
+		}
 	}
-	return (true);
+
+	return (false);
+
+
+
+
+
+
 
 }
 
